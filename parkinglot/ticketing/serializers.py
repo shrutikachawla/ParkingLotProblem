@@ -8,5 +8,15 @@ class CarSerializer(serializers.ModelSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Ticket
+        model = Ticket
         fields = "__all__"
+
+class DynamicCarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = ['regno']
+
+class CarSlotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = ['slot']
