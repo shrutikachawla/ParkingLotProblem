@@ -161,3 +161,19 @@ class SlotByReg(APIView):
 
         serializer = CarSlotSerializer(cars, many=True)
         return Response(serializer.data, status=status.HTTP_302_FOUND)
+
+
+class SlotByColor(APIView):
+
+    def get(self, request):    
+        color = request.GET.get('color')
+        if color is None:
+            return Response("Color can't be null", status = status.HTTP_400_BAD_REQUEST)
+        else:
+            try:
+                cars = Car.objects.filter(color__exact=color).values('slot')
+            except Car.DoesNotExist:
+                return Response("OOPS! We don't have any car in this color", status = status.HTTP_404_NOT_FOUND)
+
+        serializer = CarSlotSerializer(cars, many=True)
+        return Response(serializer.data, status=status.HTTP_302_FOUND)
