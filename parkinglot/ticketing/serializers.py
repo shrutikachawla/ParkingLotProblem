@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Car, Ticket
+from .models import Car, Ticket, Device
 
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,3 +20,8 @@ class CarSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = ['slot']
+
+class SignupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Device
+        fields = ('name','password')

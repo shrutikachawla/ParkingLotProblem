@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import CarView, CarDetail, Parking, Leave, TicketView, RegNoByColor, SlotByReg, SlotByColor
+from .views import CarView, CarDetail, Parking, Leave, TicketView, RegNoByColor, SlotByReg, SlotByColor, DeviceView
+from . import views
 #from .views import Parking
 
 urlpatterns = [
@@ -10,6 +11,9 @@ urlpatterns = [
     path('ticket/', TicketView.as_view(), name="ticket_list"),
     path('regNoByColor/', RegNoByColor.as_view(), name="reg_no_by_color"),
     path('slotByReg/', SlotByReg.as_view(), name="slot_by_reg"),
-    path('slotByColor/', SlotByColor.as_view(), name="slot_by_reg")
+    path('slotByColor/', SlotByColor.as_view(), name="slot_by_reg"),
+    path('login/', views.login),
+    path('signup/',views.signup),
+    path('devices/',DeviceView.as_view())
     #path('park', TicketVi.as_view())
 ]

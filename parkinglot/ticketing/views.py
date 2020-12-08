@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from ticketing.serializers import CarSerializer, TicketSerializer, DynamicCarSerializer, CarSlotSerializer
-from ticketing.models import Car, Ticket
+from ticketing.serializers import CarSerializer, TicketSerializer, DynamicCarSerializer, CarSlotSerializer, SignupSerializer
+from ticketing.models import Car, Ticket, Device
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 import heapq
+import traceback, jwt, uuid
+from django.conf import settings
+from .utils import is_login
 # Create your views here.
 
 AVAILABLE_SLOTS = [11,12,13,14,15,16,17,18,19,10]
@@ -16,7 +20,8 @@ class CarView(APIView):
         serializer = CarSerializer(model, many = True)
         return Response(serializer.data)
 
-    def post(self, request):
+    @is_login
+    def post(self, request, id):
         serializer = CarSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -66,8 +71,8 @@ class CarDetail(APIView):
     
 
 class Parking(APIView):
-
-    def get(self,request):
+    @is_login
+    def get(self,request,id):
         regno = request.GET.get('regno')
         if regno is None:
             return Response("Registration no. can't be null", status = status.HTTP_400_BAD_REQUEST)
@@ -98,7 +103,8 @@ class Parking(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Leave(APIView):
-    def get(self, request):
+    @is_login
+    def get(self, request, id):
         ticketNo = request.GET.get('ticketNo')
         if ticketNo is None:
             return Response("Ticket no. can't be null", status = status.HTTP_400_BAD_REQUEST)
@@ -115,7 +121,6 @@ class Leave(APIView):
             heapq.heappush(AVAILABLE_SLOTS, int(ticket.slotAllotted))
             data['slotAllotted'] =  '00'
             data['carId'] = ticket.carId
-            
             car = Car.objects.get(regno=ticket.carId)
             data_car = request.data
             data_car['level'] = 100
@@ -177,3 +182,50 @@ class SlotByColor(APIView):
 
         serializer = CarSlotSerializer(cars, many=True)
         return Response(serializer.data, status=status.HTTP_302_FOUND)
+
+
+@api_view(['POST'])
+def signup(request):
+    try:
+        username = request.data.get('username')
+        password = request.data.get('password')
+        if username == "" or username.isspace():
+            return Response("Username can't be null", status = status.HTTP_404_NOT_FOUND)
+        else:
+            hash = Device.encrypt(Device, password)
+            hash = hash.decode("utf-8")
+            newDevice = Device(name=username, password=hash)
+            newDevice.save()
+            return Response("Registered successfully", status = status.HTTP_200_OK)
+    except Exception:
+        if settings.DEBUG:
+            print(traceback.format_exc())
+        return Response("Could not register! Please try again",status=404)
+
+@api_view(['POST'])
+def login(request):
+    try:
+        userName = request.data.get('username')
+        if userName == "" or userName.isspace():
+            return Response("Username is a mandatory field",status=403)
+        device = Device.objects.get(name=userName)
+        if device.compare(password=request.data.get('password')):
+            response = Response(status=200)
+            payload = {
+                'id': str(device.id)
+            }
+            value = jwt.encode(payload, settings.SECRET_KEY).decode("utf-8")
+            response.set_cookie('jwt', value)
+            return response
+        else:
+            return Response("Wrong password",status=status.HTTP_403_FORBIDDEN)
+    except Exception:
+        if settings.DEBUG:
+            print(traceback.format_exc())
+        return Response("Username not found",status=status.HTTP_404_NOT_FOUND)
+
+class DeviceView(APIView):
+    def get(self, request):
+        model = Device.objects.all()
+        serializer = SignupSerializer(model, many = True)
+        return Response(serializer.data)
