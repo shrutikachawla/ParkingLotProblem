@@ -22,6 +22,8 @@ class CarView(APIView):
 
     @is_login
     def post(self, request, id):
+        if id is None:
+            return Response("Device unauthorized", status=status.HTTP_403_FORBIDDEN)
         serializer = CarSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -73,6 +75,8 @@ class CarDetail(APIView):
 class Parking(APIView):
     @is_login
     def get(self,request,id):
+        if id is None:
+            return Response("Device unauthorized", status=status.HTTP_403_FORBIDDEN)
         regno = request.GET.get('regno')
         if regno is None:
             return Response("Registration no. can't be null", status = status.HTTP_400_BAD_REQUEST)
@@ -105,6 +109,8 @@ class Parking(APIView):
 class Leave(APIView):
     @is_login
     def get(self, request, id):
+        if id is None:
+            return Response("Device unauthorized", status=status.HTTP_403_FORBIDDEN)
         ticketNo = request.GET.get('ticketNo')
         if ticketNo is None:
             return Response("Ticket no. can't be null", status = status.HTTP_400_BAD_REQUEST)
