@@ -4,10 +4,6 @@ from .models import Car
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
-        fields = ('id', 'reg_no', 'color', 'allowed', 
-        'createdAt')
+        fields = ('id', 'regno', 'color', 'status', 
+        'slot', 'level')
 
-class ParkingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Car
-        fields: ("reg-no", "color", "allowed")
