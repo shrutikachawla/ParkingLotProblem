@@ -64,8 +64,7 @@
 
 ### To run project 
 * git clone https://github.com/shrutikachawla/ParkingLotProblem.git
-* cd parkingLot
+* cd ParkingLotProblem/parkinglot
 * pip install -r requirements.txt
 * python manage.py migrate
 * python manage.py runserver
->>>>>>> 50f0ee2f6be0a1a3fa2347db9c0197f208372e52
