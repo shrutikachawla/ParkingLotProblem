@@ -3,6 +3,12 @@
 #### Shrutika Chawla
 ##### shrutikachawla.96@gmail.com
 
+### To run project 
+* git clone https://github.com/shrutikachawla/ParkingLotProblem.git
+* cd ParkingLotProblem/parkinglot
+* pip install -r requirements.txt
+* python manage.py migrate
+* python manage.py runserver
 
 ### Class Diagrams:
 
@@ -60,11 +66,3 @@
 ### Problems faced
 * Was unfamiliar with Django. Setting up the environment took quite a lot of time
 * Took some time to understand the basic functioning in Django. Used my spring-boot knowledge to develop the APIs
-
-
-### To run project 
-* git clone https://github.com/shrutikachawla/ParkingLotProblem.git
-* cd ParkingLotProblem/parkinglot
-* pip install -r requirements.txt
-* python manage.py migrate
-* python manage.py runserver
