@@ -50,8 +50,8 @@
 * host_name/api/login/ : accepts a JSON object (username & password) to sign in a device into the system for authorized parking
 * host_name/api/home/ : lists all the cars present in db
 * host_name/api/ticket : lists all the tickets issued from the system
-* host_name/api/detail/regno=123 : lists the car with the mentioned registration no.
-* host_name/api/park/regno=123 : parks the car and issues a ticket with a slot
+* host_name/api/detail/?regno=123 : lists the car with the mentioned registration no.
+* host_name/api/park/?regno=123 : parks the car and issues a ticket with a slot
 * host_name/api/leave/?ticketNo=123 : makes the slot available mentioned in given ticket no. and updates Car table
 * host_name/api/regNoByColor/?color=anycolor : fetches the registration no. of cars in mentioned color
 * host_name/api/slotByReg/?regno=XXXXXX : fetches the slot no. of a car with mentioned registration no.
@@ -60,3 +60,11 @@
 ### Problems faced
 * Was unfamiliar with Django. Setting up the environment took quite a lot of time
 * Took some time to understand the basic functioning in Django. Used my spring-boot knowledge to develop the APIs
+
+
+### To run project 
+-> git clone https://github.com/shrutikachawla/ParkingLotProblem.git
+-> cd parkingLot
+-> pip install -r requirements.txt
+-> python manage.py migrate
+-> python manage.py runserver
