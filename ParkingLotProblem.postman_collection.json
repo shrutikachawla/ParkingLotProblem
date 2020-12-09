@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "02749752-829a-4c6d-a969-e545ea584251",
+		"name": "ParkingLotProblem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All cars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "\"2ljjqlflXHe4xRT+lY9wCTeAfuUJeThp2zxjkz5LR5ElCcsKRA/BhnJN37Y8JaBw\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"nitin\",\n    \"password\":\"pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/home/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"home",
+						""
+					]
+				},
+				"description": "Displays all the cars which are registered in out database"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "\"2ljjqlflXHe4xRT+lY9wCTeAfuUJeThp2zxjkz5LR5ElCcsKRA/BhnJN37Y8JaBw\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"Shrutika Chawla\",\n    \"password\":\"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				},
+				"description": "Logs in a registered user into the system. Only after logging in will a user be able to register his car into the database"
+			},
+			"response": []
+		},
+		{
+			"name": "All tickets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "\"2ljjqlflXHe4xRT+lY9wCTeAfuUJeThp2zxjkz5LR5ElCcsKRA/BhnJN37Y8JaBw\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"nitin\",\n    \"password\":\"pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ticket/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ticket",
+						""
+					]
+				},
+				"description": "Fetches all tickets issued from our system.\r\nA system with slotAllotted field as '00' indicates that the ticket has been invalidated."
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ABC\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup",
+						""
+					]
+				},
+				"description": "Registers a user into the system"
+			},
+			"response": []
+		},
+		{
+			"name": "Get detail of a car",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/detail/?regno=XXXXXX",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"detail",
+						""
+					],
+					"query": [
+						{
+							"key": "regno",
+							"value": "XXXXXX"
+						}
+					]
+				},
+				"description": "Gets the detail of a car with specified registration no."
+			},
+			"response": []
+		},
+		{
+			"name": "Register Car in db",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"regno\": \"PB-10-FZ-0806\",\r\n        \"color\": \"black\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/home/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"home",
+						""
+					]
+				},
+				"description": "Registers a car into the db. The slot and level value as 100 indicate a ticket has not been issued for the parking.\r\n\r\nReturns the JSON object of car with default values wherever necessary.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Park Car",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/park?regno=PB-10-FZ-0806",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"park"
+					],
+					"query": [
+						{
+							"key": "regno",
+							"value": "PB-10-FZ-0806"
+						}
+					]
+				},
+				"description": "Parks a car with the given registration no. and issues a ticket for the device. \r\nThe ticketNo issued here will be used when the car has to leave"
+			},
+			"response": []
+		},
+		{
+			"name": "Leave car ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/leave?ticketNo=f49154a7-3a16-11eb-917a-606dc733cc76",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"leave"
+					],
+					"query": [
+						{
+							"key": "ticketNo",
+							"value": "f49154a7-3a16-11eb-917a-606dc733cc76"
+						}
+					]
+				},
+				"description": "Called when a car has to leave. Makes the slot available mentioned in given ticket no. for other cars and updates Car table's 'slot' and 'leave' fields"
+			},
+			"response": []
+		},
+		{
+			"name": "Registration no. by color",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/regNoByColor/?color=black",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"regNoByColor",
+						""
+					],
+					"query": [
+						{
+							"key": "color",
+							"value": "black"
+						}
+					]
+				},
+				"description": "Fetches the registration no.s of all the cars which have the mentioned color"
+			},
+			"response": []
+		},
+		{
+			"name": "Slot by Registration no.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/slotByReg/?regno=XXXXXX",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"slotByReg",
+						""
+					],
+					"query": [
+						{
+							"key": "regno",
+							"value": "XXXXXX"
+						}
+					]
+				},
+				"description": "Gives the slot no. of car which has the mentioned registration no. \r\nA slot number as 100 means the car is not present in our parking lot"
+			},
+			"response": []
+		},
+		{
+			"name": "Slot No. by color",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/slotByColor/?color=black",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"slotByColor",
+						""
+					],
+					"query": [
+						{
+							"key": "color",
+							"value": "black"
+						}
+					]
+				},
+				"description": "Gives the slot numbers of various cars having the mentioned color. \r\nIf a slot no. has value 100, it means the car is no longer parked in our system"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
