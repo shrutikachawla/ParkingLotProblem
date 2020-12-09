@@ -63,8 +63,8 @@
 
 
 ### To run project 
--> git clone https://github.com/shrutikachawla/ParkingLotProblem.git
--> cd parkingLot
--> pip install -r requirements.txt
--> python manage.py migrate
--> python manage.py runserver
+ git clone https://github.com/shrutikachawla/ParkingLotProblem.git
+ cd parkingLot
+ pip install -r requirements.txt
+ python manage.py migrate
+ python manage.py runserver
