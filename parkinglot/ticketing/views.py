@@ -24,6 +24,8 @@ class CarView(APIView):
     def post(self, request, id):
         if id is None:
             return Response("Device unauthorized", status=status.HTTP_403_FORBIDDEN)
+        data = request.data
+        data['deviceId']=id
         serializer = CarSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -38,7 +40,7 @@ class TicketView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = CarSerializer(data=request.data)
+        serializer = TicketSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
