@@ -1,0 +1,4 @@
+  applications:
+  - name: parkinglot
+    random-route: true
+    memory: 128M
